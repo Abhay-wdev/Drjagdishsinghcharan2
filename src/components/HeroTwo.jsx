@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Phone, Calendar, MapPin, Award } from 'lucide-react';
-import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function HeroSectiontwo() {
   const slides = [
@@ -97,7 +96,7 @@ export default function HeroSectiontwo() {
 
   const sliderStyle = {
     transform: `translateX(-${currentSlide * containerWidth}px)`,
-    transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+    transition: 'transform 0.8s ease-in-out',
     display: 'flex',
     width: `${slides.length * containerWidth}px`,
     height: '100%',
@@ -114,7 +113,6 @@ export default function HeroSectiontwo() {
     <section
       ref={containerRef}
       className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-blue-900 to-teal-800"
-      aria-label="Dr. Jagdish Singh Charan - Spine Surgeon Hero Section"
     >
       {containerWidth > 0 && (
         <div style={sliderStyle}>
@@ -123,57 +121,50 @@ export default function HeroSectiontwo() {
               <div className="relative w-full h-full">
                 {/* Background Image */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 hover:scale-105"
+                 className={`absolute inset-0 bg-cover bg-no-repeat 
+                  ${slide.id === 5 || slide.id === 2 ? 'bg-[67.5%_center] sm:bg-center' : 'bg-center'
+                  }`}
                   style={{
                     backgroundImage: `url(${slide.image})`,
+                    // backgroundPosition: slide.id === 5 ? '67% center' : 'center',
+
                   }}
                 />
 
-                {/* Gradient Overlay */}
+                {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
 
-                {/* Animated Background Elements */}
-                <div className="absolute inset-0 overflow-hidden">
-                  <div className="absolute -top-20 -left-20 w-40 h-40 bg-white/5 rounded-full animate-pulse" />
-                  <div className="absolute top-1/3 -right-10 w-32 h-32 bg-teal-400/10 rounded-full animate-bounce"
-                    style={{ animationDelay: '1s', animationDuration: '3s' }} />
-                  <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-blue-400/10 rounded-full animate-pulse"
-                    style={{ animationDelay: '2s' }} />
-                </div>
-
-                {/* Content Overlay */}
+                {/* Content */}
                 <div
-                  className="absolute inset-0 flex items-center justify-start px-6 sm:px-12 lg:px-20"
-                 
+                  className={`absolute inset-0 flex items-center ${
+                    slide.id === 5 ? 'justify-end pr-4 sm:justify-start sm:px-12 lg:px-20' : 'justify-start px-6 sm:px-12 lg:px-20'
+                  }`}
                 >
-                  <div className="max-w-3xl   text-left animate-fadeIn"
-                  
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  
+                  <div
+                    className="max-w-3xl text-left text-white animate-fadeIn"
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
                   >
                     <div className="inline-flex items-center px-4 py-2 bg-teal-500/20 backdrop-blur-sm rounded-full border border-teal-300/30 mb-6">
                       <Award className="w-4 h-4 text-teal-300 mr-2" />
                       <span className="text-teal-200 text-sm font-medium">{slide.specialty}</span>
                     </div>
 
-                    <h1 className="text-white text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 leading-tight">
-                      <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-200">
-                        {slide.title}
-                      </span>
+                    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-4 leading-tight bg-clip-text bg-gradient-to-r from-white to-teal-200 text-transparent">
+                      {slide.title}
                     </h1>
 
-                    <h2 className="text-teal-200 text-xl sm:text-2xl lg:text-3xl font-semibold mb-6 opacity-90">
+                    <h2 className="text-teal-200 text-xl sm:text-2xl lg:text-3xl font-semibold mb-6">
                       {slide.subtitle}
                     </h2>
 
-                    <p className="text-white/90 text-lg sm:text-xl lg:text-2xl mb-8 leading-relaxed max-w-2xl">
+                    <p className="text-white/90 text-lg sm:text-xl lg:text-2xl mb-8 max-w-2xl leading-relaxed">
                       {slide.description}
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                       <Link href="/book-appointment">
-                        <button className="group cursor-pointer relative px-8 py-4 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
+                        <button className="group relative px-8 py-4 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
                           <span className="relative z-10 flex items-center justify-center">
                             <Calendar className="w-5 h-5 mr-2" />
                             Book Appointment
@@ -182,14 +173,14 @@ export default function HeroSectiontwo() {
                         </button>
                       </Link>
 
-                      <Link href="tel:+91 8003474733" >
-                        <div className="group px-8 cursor-pointer py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300">
+                      <Link href="tel:+918003474733">
+                        <div className="group px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300 cursor-pointer">
                           <span className="flex items-center justify-center">
-                           <Phone className="w-5 h-5 mr-2" />
+                            <Phone className="w-5 h-5 mr-2" />
                             Call Now
                           </span>
                         </div>
-                        </Link>
+                      </Link>
                     </div>
 
                     <div className="mt-8 flex items-center text-white/80">
@@ -204,30 +195,30 @@ export default function HeroSectiontwo() {
         </div>
       )}
 
-      {/* Navigation Buttons */}
+      {/* Navigation */}
       <button
         onClick={handlePrev}
-        className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/10 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/20 transition-all duration-300 z-20 focus:outline-none focus:ring-2 focus:ring-teal-400 group"
+        className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/10 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/20 z-20"
         aria-label="Previous Slide"
       >
-        <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
+        <ChevronLeft className="w-6 h-6" />
       </button>
 
       <button
         onClick={handleNext}
-        className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/10 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/20 transition-all duration-300 z-20 focus:outline-none focus:ring-2 focus:ring-teal-400 group"
+        className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/10 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/20 z-20"
         aria-label="Next Slide"
       >
-        <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
+        <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Slide Indicators */}
+      {/* Indicators */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentSlide ? 'bg-teal-400 scale-125 shadow-lg' : 'bg-white/40 hover:bg-white/60'
             }`}
             aria-label={`Go to slide ${index + 1}`}
@@ -243,7 +234,7 @@ export default function HeroSectiontwo() {
         />
       </div>
 
-      {/* Floating Medical Icons */}
+      {/* Floating Shape */}
       <div className="absolute top-20 right-20 hidden lg:block animate-float">
         <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
           <div className="w-8 h-8 bg-teal-400 rounded-sm transform rotate-45" />
@@ -264,7 +255,7 @@ export default function HeroSectiontwo() {
 
         @keyframes float {
           0%, 100% {
-            transform: translateY(0px);
+            transform: translateY(0);
           }
           50% {
             transform: translateY(-20px);
