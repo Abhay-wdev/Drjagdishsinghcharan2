@@ -124,7 +124,7 @@ export default function HeroSectiontwo() {
                 {/* Background Image */}
                 <div
                    className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-700 hover:scale-105 ${
-                    slide.id === 5 ? 'bg-[66.5%_center] sm:bg-center' : 'bg-center'
+                    slide.id === 5 ? 'bg-[66.7%_center] sm:bg-center' : 'bg-center'
                   }`}
                   style={{
                     backgroundImage: `url(${slide.image})`,
