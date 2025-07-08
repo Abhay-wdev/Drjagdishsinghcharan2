@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaMap, FaPhoneAlt } from "react-icons/fa";
 import { MdEmail, MdWatchLater } from "react-icons/md";
+import { MdLocationPin } from "react-icons/md";
 
 const services = [
   { name: "Spine Surgery", href: "/services/endoscopic-spine-surgery" },
@@ -55,7 +56,7 @@ export default function Footer() {
             </p>
             <ul className="space-y-2 text-sm">
               <li className="flex items-baseline gap-2">
-                <FaMap /> <span>1/9, PNB Marg, B Block, housing board, Panchsheel Nagar, Ajmer, Rajasthan 305004</span>
+              <span className='flex justify-center items-center'><MdLocationPin /></span><span>  1/9, PNB Marg, B Block, housing board, Panchsheel Nagar, Ajmer, Rajasthan 305004</span>
               </li>
               <li className="flex items-center gap-2">
                 <FaPhoneAlt /> <Link href="tel:+919876543210">+91 8003474733</Link>
