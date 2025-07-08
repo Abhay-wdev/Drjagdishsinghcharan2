@@ -161,27 +161,27 @@ export default function HeroSectiontwo() {
                     <p className="text-white/90 text-lg sm:text-xl lg:text-2xl mb-8 max-w-2xl leading-relaxed">
                       {slide.description}
                     </p>
+                    <div className="flex flex-col items-center justify-center text-center sm:flex-row gap-4 sm:gap-6">
+  <Link href="/book-appointment">
+    <button className="group relative px-8 py-4 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
+      <span className="relative z-10 flex items-center justify-center">
+        <Calendar className="w-5 h-5 mr-2" />
+        Book Appointment
+      </span>
+      <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    </button>
+  </Link>
 
-                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                      <Link href="/book-appointment">
-                        <button className="group relative px-8 py-4 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
-                          <span className="relative z-10 flex items-center justify-center">
-                            <Calendar className="w-5 h-5 mr-2" />
-                            Book Appointment
-                          </span>
-                          <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </button>
-                      </Link>
+  <Link href="tel:+918003474733">
+    <div className="group px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300 cursor-pointer">
+      <span className="flex items-center justify-center">
+        <Phone className="w-5 h-5 mr-2" />
+        Call Now
+      </span>
+    </div>
+  </Link>
+</div>
 
-                      <Link href="tel:+918003474733">
-                        <div className="group px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300 cursor-pointer">
-                          <span className="flex items-center justify-center">
-                            <Phone className="w-5 h-5 mr-2" />
-                            Call Now
-                          </span>
-                        </div>
-                      </Link>
-                    </div>
 
                     <div className="mt-8 flex items-center text-white/80">
                       <MapPin className="w-4 h-4 mr-2 text-teal-300" />
