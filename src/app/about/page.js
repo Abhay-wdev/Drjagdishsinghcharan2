@@ -44,7 +44,7 @@ export default function Home() {
 
 
       {/* Hero Section */}
-      <section className="bg-blue-50 py-12 px-4 sm:px-6 lg:px-8 text-center">
+      <section className="bg-blue-50 py-12 px-2 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

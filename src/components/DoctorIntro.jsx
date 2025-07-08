@@ -6,10 +6,10 @@ import { FaStethoscope } from "react-icons/fa";
 
 export default function DoctorIntro() {
   return (
-    <section className="bg-blue-50 py-12 px-6 lg:px-16 text-blue-900">
+    <section className="bg-blue-50 py-12 px-3 lg:px-16 text-blue-900">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-start gap-12">
         {/* Image */}
-        <div className="w-full  lg:w-1/3">
+        <div className="w-full flex justify-center lg:w-1/3">
           <Image
             src="/images/home/doctor2.jpg"
             alt="Dr. Jagdish Singh Charan"
