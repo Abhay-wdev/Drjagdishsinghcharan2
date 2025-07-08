@@ -124,7 +124,7 @@ export default function HeroSectiontwo() {
                 {/* Background Image */}
                 <div
                    className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-700 hover:scale-105 ${
-                    slide.id === 5 ? 'bg-[66.7%_center] sm:bg-center' : 'bg-center'
+                    slide.id === 5 ? 'bg-[66.3%_center] sm:bg-center' : 'bg-center'
                   }`}
                   style={{
                     backgroundImage: `url(${slide.image})`,
@@ -173,7 +173,8 @@ export default function HeroSectiontwo() {
                       {slide.description}
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                    <div className="flex flex-col items-center justify-center sm:items-start sm:justify-start sm:flex-row gap-4 sm:gap-6">
+
                       <Link href="/book-appointment">
                         <button className="group cursor-pointer relative px-8 py-4 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
                           <span className="relative z-10 flex items-center justify-center">
