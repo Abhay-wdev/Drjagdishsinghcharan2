@@ -1,11 +1,20 @@
-import React from "react";
+"use client";
+
+
+import React, { useRef } from "react";
 import Image from "next/image";
 import { IoLocation } from "react-icons/io5";
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaUserMd } from "react-icons/fa";
 import { BsClockHistory } from "react-icons/bs";
-import { FaUserMd } from "react-icons/fa";
+ 
+import { motion } from "framer-motion";
+
 
 function AboutDoctor() {
+
+
+  
+
   return (
     <section
       style={{ background: "linear-gradient(to bottom, #ffffff, #F0F8FF)" }}
@@ -58,6 +67,13 @@ function AboutDoctor() {
             Dr. Jagdish Singh Charan   <div className="text-3xl pt-2"> Expert Spine & Orthopedic Surgeon</div>
           </h1>
 
+         
+          <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }} // amount: % of element in view to trigger
+    transition={{ duration: 0.6, ease: "easeOut" }}
+  >
           <p> 
   <strong>Dr. Jagdish Singh Charan</strong> is a highly experienced{" "}
   <strong>spine and orthopedic surgeon</strong> with over{" "}
@@ -72,7 +88,13 @@ function AboutDoctor() {
   <strong>joint replacements</strong>, and{" "}`
   <strong>complex trauma care</strong>. */}
 </p>
-
+</motion.div>
+<motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }} // amount: % of element in view to trigger
+    transition={{ duration: 0.6, ease: "easeOut" }}
+  >
 <p>
   <strong>Dr. Charan</strong> has served in key roles at top hospitals
   and universities, including <strong>NIMS University</strong> and{" "}
@@ -84,7 +106,13 @@ function AboutDoctor() {
   <strong>orthopedic and spine care</strong>.
 </p>
 
-
+</motion.div>
+<motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }} // amount: % of element in view to trigger
+    transition={{ duration: 0.6, ease: "easeOut" }}
+  >
           {/* Services Offered */}
           <div className="bg-white bg-gradient-to-b from-[#ffffff] to-[#ffffff] text-[#333] p-6 rounded-lg shadow">
             <h2 className="text-2xl font-semibold text-blue-800 mb-4">
@@ -127,7 +155,7 @@ function AboutDoctor() {
              
             </ul>
           </div>
-
+          </motion.div>
           {/* Research & Publications
           <div className="bg-white p-6 rounded-lg shadow">
             <h2 className="text-2xl font-semibold text-blue-800 mb-4">Research & Publications</h2>

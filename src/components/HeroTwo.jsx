@@ -16,7 +16,8 @@ export default function HeroSectiontwo() {
     },
     {
       id: 5,
-      image: '/images/home/slide6.webp',
+      image: '/images/home/slide61.webp',
+      imageMobile: '/images/home/slide6.webp', // new mobile-specific image
       title: 'Agastya Spine & Ortho Aarogyam',
       subtitle: 'Excellence in Spine & Orthopedic Care',
       description: 'Delivering advanced treatments with expertise, ethics, and empathy for your complete musculoskeletal health.',
@@ -50,6 +51,7 @@ export default function HeroSectiontwo() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const slideInterval = 5000;
@@ -61,16 +63,28 @@ export default function HeroSectiontwo() {
         setContainerWidth(containerRef.current.clientWidth);
       }
     };
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 640); // Tailwind 'sm' breakpoint
+    };
+
     updateWidth();
+    checkScreenSize();
+
     window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+      window.removeEventListener('resize', checkScreenSize);
+    };
   }, []);
 
   useEffect(() => {
+    stopAutoSlide();
     if (containerWidth > 0 && !isHovered) {
       startAutoSlide();
-      return () => stopAutoSlide();
     }
+    return () => stopAutoSlide();
   }, [containerWidth, slides.length, isHovered]);
 
   const startAutoSlide = () => {
@@ -123,37 +137,27 @@ export default function HeroSectiontwo() {
               <div className="relative w-full h-full">
                 {/* Background Image */}
                 <div
-                   className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-700 hover:scale-105 ${
-                    slide.id === 5 || slide.id === 2 || slide.id === 4? 'bg-[66.2%_center] sm:bg-center' : 'bg-center'
+                  className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-700 hover:scale-105 ${
+                    slide.id === 5 || slide.id === 2 || slide.id === 4 ? 'bg-[66.2%_center] sm:bg-center scale-0.8' : 'bg-center'
                   }`}
                   style={{
-                    backgroundImage: `url(${slide.image})`,
+                    backgroundImage:
+                      slide.id === 5
+                        ? `url(${isMobile ? slide.imageMobile : slide.image})`
+                        : `url(${slide.image})`,
                   }}
                 />
 
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
 
-                {/* Animated Background Elements */}
-                <div className="absolute inset-0 overflow-hidden">
-                  <div className="absolute -top-20 -left-20 w-40 h-40 bg-white/5 rounded-full animate-pulse" />
-                  <div className="absolute top-1/3 -right-10 w-32 h-32 bg-teal-400/10 rounded-full animate-bounce"
-                    style={{ animationDelay: '1s', animationDuration: '3s' }} />
-                  <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-blue-400/10 rounded-full animate-pulse"
-                    style={{ animationDelay: '2s' }} />
-                </div>
-
                 {/* Content Overlay */}
                 <div
                   className="absolute inset-0 flex items-center justify-start px-6 sm:px-12 lg:px-20"
-                 
-                >
-                  <div className="max-w-3xl   text-left animate-fadeIn"
-                  
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
-                  
-                  >
+                >
+                  <div className="max-w-3xl text-left animate-fadeIn">
                     <div className="inline-flex items-center px-4 py-2 bg-teal-500/20 backdrop-blur-sm rounded-full border border-teal-300/30 mb-6">
                       <Award className="w-4 h-4 text-teal-300 mr-2" />
                       <span className="text-teal-200 text-sm font-medium">{slide.specialty}</span>
@@ -174,7 +178,6 @@ export default function HeroSectiontwo() {
                     </p>
 
                     <div className="flex flex-col items-center justify-center sm:items-start sm:justify-start sm:flex-row gap-4 sm:gap-6">
-
                       <Link href="/book-appointment">
                         <button className="group cursor-pointer relative px-8 py-4 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
                           <span className="relative z-10 flex items-center justify-center">
@@ -185,14 +188,14 @@ export default function HeroSectiontwo() {
                         </button>
                       </Link>
 
-                      <Link href="tel:+91 8003474733" >
+                      <Link href="tel:+91 8003474733">
                         <div className="group px-8 cursor-pointer py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all duration-300">
                           <span className="flex items-center justify-center">
-                           <Phone className="w-5 h-5 mr-2" />
+                            <Phone className="w-5 h-5 mr-2" />
                             Call Now
                           </span>
                         </div>
-                        </Link>
+                      </Link>
                     </div>
 
                     <div className="mt-8 flex items-center text-white/80">
@@ -246,13 +249,6 @@ export default function HeroSectiontwo() {
         />
       </div>
 
-      {/* Floating Medical Icons */}
-      <div className="absolute top-20 right-20 hidden lg:block animate-float">
-        <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center">
-          <div className="w-8 h-8 bg-teal-400 rounded-sm transform rotate-45" />
-        </div>
-      </div>
-
       <style jsx>{`
         @keyframes fadeIn {
           from {
@@ -264,22 +260,8 @@ export default function HeroSectiontwo() {
             transform: translateY(0);
           }
         }
-
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-
         .animate-fadeIn {
           animation: fadeIn 1s ease-out;
-        }
-
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
         }
       `}</style>
     </section>

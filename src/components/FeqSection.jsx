@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { MdQuestionAnswer } from "react-icons/md";
-
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 const faqs = [
   {
     question: "What is minimally invasive spine surgery?",
@@ -44,9 +44,9 @@ export default function FeqSection() {
     );
 
   return (
-    <section className="py-12 ">
+    <section className="pb-12  ">
       <div className="max-w-4xl mx-auto shadow-2xl rounded-2xl px-8 pb-8">
-      <div className="  text-[#333] flex justify-center py-7 px-5">
+      <div className="  text-[#333] flex justify-center  px-5">
       <div
         className="max-w-full text-center"
         role="region"
@@ -55,15 +55,36 @@ export default function FeqSection() {
       >
         {/* Icon */}
       
-      <center><div className="text-blue-700 text-6xl">
-      <MdQuestionAnswer />
-</div></center> 
+        
+      <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              whileInView={{ opacity: 1, scale: 0.5 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+              className="flex justify-center"
+            >
+      <Image
+  src="/images/services/faq.webp"
+  alt="Bone Tuberculosis Service"
+  width={200}
+  height={200}
+  className="object-cover rounded-md"
+/>
+</motion.div>
+ 
         
 
         {/* Title */}
+        <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
+               
+            >
         <h1
           id="faq-title"
-          className="text-3xl pt-10 font-bold text-blue-800 mb-3 select-none"
+          className="text-3xl   font-bold text-blue-800 mt-[-30px] select-none"
         >
           Frequently Asked Questions
         </h1>
@@ -76,12 +97,25 @@ export default function FeqSection() {
           Find answers to common questions about our urology services. Can't
           find what you're looking for? Contact us directly.
         </p>
+        </motion.div>
       </div>
     </div>
-        <div className="space-y-4">
+        <div className="space-y-4 py-6">
           {faqs.map((faq, i) => {
+
+
+
             const isOpen = openFaqs.includes(i);
             return (
+
+              <motion.div
+initial={{ opacity: 0, y: -50 }}
+whileInView={{ opacity: 1, y: 0 }}
+viewport={{ once: true, amount: 0.2 }}
+transition={{ duration: 0.6, ease: "easeOut", delay: `${i*0.2}` }}
+className="flex justify-center"
+>
+
               <div key={i} className=" rounded-lg shadow-sm">
                 <button
                   onClick={() => toggleFaq(i)}
@@ -104,8 +138,14 @@ export default function FeqSection() {
                   <p className="text-[17px] text-gray-600">{faq.answer}</p>
                 </div>
               </div>
+              </motion.div>
             );
-          })}
+       
+          })
+          
+          
+          
+          }
         </div>
       </div>
     </section>
