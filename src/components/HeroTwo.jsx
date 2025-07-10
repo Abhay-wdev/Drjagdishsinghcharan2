@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Phone, Calendar, MapPin, Award } from 'lucide-react';
-import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function HeroSectiontwo() {
   const slides = [
@@ -12,16 +11,17 @@ export default function HeroSectiontwo() {
       title: 'Expert Spine Care',
       subtitle: 'Dr. Jagdish Singh Charan',
       description: 'Advanced spine surgery with precision and compassion. Your journey to pain-free living starts here.',
-      specialty: 'Minimally Invasive Spine Surgery'
+      specialty: 'Minimally Invasive Spine Surgery',
     },
     {
       id: 5,
       image: '/images/home/slide61.webp',
-      imageMobile: '/images/home/slide6.webp', // new mobile-specific image
+      imageMobile: '/images/home/slide6.webp',
       title: 'Agastya Spine & Ortho Aarogyam',
       subtitle: 'Excellence in Spine & Orthopedic Care',
       description: 'Delivering advanced treatments with expertise, ethics, and empathy for your complete musculoskeletal health.',
-      specialty: 'Trusted Spine & Ortho Center'
+      specialty: 'Trusted Spine & Ortho Center',
+      scale: 1,
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ export default function HeroSectiontwo() {
       title: 'Orthopedic Excellence',
       subtitle: 'Agastya Spine & Ortho Aarogyam',
       description: 'Comprehensive orthopedic care with state-of-the-art technology and personalized treatment plans.',
-      specialty: 'Complete Orthopedic Solutions'
+      specialty: 'Complete Orthopedic Solutions',
     },
     {
       id: 3,
@@ -37,16 +37,8 @@ export default function HeroSectiontwo() {
       title: 'Advanced Spine Surgery',
       subtitle: 'Precision & Innovation',
       description: 'Leading-edge surgical techniques for complex spine conditions with faster recovery times.',
-      specialty: 'Robotic Spine Surgery'
+      specialty: 'Robotic Spine Surgery',
     },
-    {
-      id: 4,
-      image: '/images/home/slide4.jpg',
-      title: 'Patient-Centered Care',
-      subtitle: 'Your Health, Our Priority',
-      description: 'Dedicated to providing exceptional patient care with a focus on your comfort and recovery.',
-      specialty: 'Holistic Treatment Approach'
-    }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -64,7 +56,7 @@ export default function HeroSectiontwo() {
       }
     };
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 640); // Tailwind 'sm' breakpoint
+      setIsMobile(window.innerWidth < 640);
     };
 
     updateWidth();
@@ -128,32 +120,39 @@ export default function HeroSectiontwo() {
     <section
       ref={containerRef}
       className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-blue-900 to-teal-800"
-      aria-label="Dr. Jagdish Singh Charan - Spine Surgeon Hero Section"
+      aria-label="Hero Section"
     >
       {containerWidth > 0 && (
         <div style={sliderStyle}>
-          {slides.map((slide, index) => (
+          {slides.map((slide) => (
             <div key={slide.id} style={slideStyle}>
               <div className="relative w-full h-full">
                 {/* Background Image */}
                 <div
                   className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-700 hover:scale-105 ${
-                    slide.id === 5 || slide.id === 2 || slide.id === 4 ? 'bg-[66.2%_center] sm:bg-center scale-0.8' : 'bg-center'
+                    slide.id === 5 ? 'bg-[66.2%_center] sm:bg-center' : 'bg-center'
                   }`}
                   style={{
                     backgroundImage:
                       slide.id === 5
                         ? `url(${isMobile ? slide.imageMobile : slide.image})`
                         : `url(${slide.image})`,
+                    transform: `scale(${slide.scale || 1})`,
+                    zIndex: 0,
                   }}
                 />
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/60 to-transparent" />
+                {/* ✅ Gradient Overlay only for id=5 */}
+                
+                 {slide.id === 5 && (
+                  <div className="absolute inset-0 w-full h-full z-10 opacity-60 bg-blue-900 lg:bg-gradient-to-r lg:from-blue-900 lg:via-blue-900 lg:to-transparent lg:w-1/2 lg:bg-blue-900/0" />
+                )}
+                
+                
 
                 {/* Content Overlay */}
                 <div
-                  className="absolute inset-0 flex items-center justify-start px-6 sm:px-12 lg:px-20"
+                  className="absolute inset-0 z-20 flex items-center justify-start px-6 sm:px-12 lg:px-20"
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
@@ -226,28 +225,6 @@ export default function HeroSectiontwo() {
       >
         <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
       </button>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 ${
-              index === currentSlide ? 'bg-teal-400 scale-125 shadow-lg' : 'bg-white/40 hover:bg-white/60'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* Progress Bar */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 z-20">
-        <div
-          className="h-full bg-gradient-to-r from-teal-400 to-blue-500 transition-all duration-300"
-          style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
-        />
-      </div>
 
       <style jsx>{`
         @keyframes fadeIn {
