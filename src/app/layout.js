@@ -8,7 +8,7 @@ import ReduxProvider from '@/store/provider';
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body  >
         <ReduxProvider>
           <FloatingContactIcons />
           <TopNavbar />

@@ -15,14 +15,14 @@ import HeroSectiontwo from "@/components/HeroTwo";
 import MultiItemCarousel from "@/components/MultiItemCarousel";
 export default function Home() {
   return (
-     <>
+     < >
       
       <HeroSectiontwo/>
       <AboutDoctor/>
       <Service/>
       <hr className="text-gray-300"></hr>
       <MultiItemCarousel/>
-     <Doctorinfo/>
+      <Doctorinfo/>
       <GoogleReviews />
       <hr className="text-gray-300"></hr>
       <WhyChoose/>
