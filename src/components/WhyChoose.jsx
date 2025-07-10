@@ -69,8 +69,8 @@ const WhyChoose = ({ imagePath = "/images/home/allService.jpg" }) => {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
          
         <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: -50 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             >
