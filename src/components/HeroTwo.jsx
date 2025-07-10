@@ -129,8 +129,8 @@ export default function HeroSectiontwo() {
               <div className="relative w-full h-full">
                 {/* Background Image */}
                 <div
-                  className={`absolute inset-0 bg-cover bg-no-repeat transition-transform duration-700 hover:scale-105 ${
-                    slide.id === 5 ? 'bg-[66.2%_center] sm:bg-center' : 'bg-center'
+                  className={`absolute w-full inset-0 bg-cover bg-no-repeat transition-transform duration-700 hover:scale-105 ${
+                    slide.id === 5 || slide.id === 2 ? 'bg-[66.2%_center] sm:bg-center' : 'bg-center'
                   }`}
                   style={{
                     backgroundImage:
@@ -143,12 +143,9 @@ export default function HeroSectiontwo() {
                 />
 
                 {/* ✅ Gradient Overlay only for id=5 */}
-                
-                 {slide.id === 5 && (
+                {slide.id === 5 && (
                   <div className="absolute inset-0 w-full h-full z-10 opacity-60 bg-blue-900 lg:bg-gradient-to-r lg:from-blue-900 lg:via-blue-900 lg:to-transparent lg:w-1/2 lg:bg-blue-900/0" />
                 )}
-                
-                
 
                 {/* Content Overlay */}
                 <div
@@ -210,21 +207,45 @@ export default function HeroSectiontwo() {
       )}
 
       {/* Navigation Buttons */}
-      <button
-        onClick={handlePrev}
-        className="absolute left-6 top-1/2 transform -translate-y-1/2 bg-white/10 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/20 transition-all duration-300 z-20 focus:outline-none focus:ring-2 focus:ring-teal-400 group"
-        aria-label="Previous Slide"
-      >
-        <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
-      </button>
+      <div className="absolute inset-x-0 bottom-6 flex justify-between px-6 sm:px-12 lg:px-20 z-20">
+        <button
+          onClick={handlePrev}
+          className="bg-white/10 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 group"
+          aria-label="Previous Slide"
+        >
+          <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
+        </button>
 
-      <button
-        onClick={handleNext}
-        className="absolute right-6 top-1/2 transform -translate-y-1/2 bg-white/10 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/20 transition-all duration-300 z-20 focus:outline-none focus:ring-2 focus:ring-teal-400 group"
-        aria-label="Next Slide"
-      >
-        <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
-      </button>
+        <button
+          onClick={handleNext}
+          className="bg-white/10 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 group"
+          aria-label="Next Slide"
+        >
+          <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
+        </button>
+      </div>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 ${
+              index === currentSlide ? 'bg-teal-400 scale-125 shadow-lg' : 'bg-white/40 hover:bg-white/60'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Progress Bar */}
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 z-20">
+        <div
+          className="h-full bg-gradient-to-r from-teal-400 to-blue-500 transition-all duration-300"
+          style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
+        />
+      </div>
 
       <style jsx>{`
         @keyframes fadeIn {
