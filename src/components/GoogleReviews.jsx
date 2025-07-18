@@ -35,7 +35,7 @@ export default function GoogleReviews() {
       </p>
       </motion.div>
       {/* Elfsight Widget Container */}
-      <div className="elfsight-app-657efde6-8c9a-40b9-8838-dee8292a34e0" data-elfsight-app-lazy></div>
+      <div className="elfsight-app-cd234694-494f-439e-8474-f5cf159360a8" data-elfsight-app-lazy></div>
     </section>
   );
 }
