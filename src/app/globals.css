@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+@layer utilities {
+  @media (min-width: 764px) and (max-width: 1038px) {
+    .hide-764-1038 {
+      display: none;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .hide-on-small {
+      display: none;
+  }
+}
+
+
+/* From Uiverse.io by cssbuttons-io */ 
+.special {
+  --color: #ffffff;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color 0.5s;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
+}
+
+.special:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+}
+
+.special:hover {
+  color: blue;
+  
+}
+
+.special:before {
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.special:hover:before {
+  top: -30px;
+  left: -30px;
+}
+
+.special:active:before {
+  background: #3a0ca3;
+  transition: background 0s;
+}
+
+/* styles/globals.css */
+.special {
+  @apply bg-blue-600 text-white w-fit px-6 py-3 rounded-full hover:bg-blue-700 transition;
+}
+
+/* styles/globals.css */
+.special {
+  @apply bg-blue-600 text-white w-fit px-6 py-3 rounded-full hover:bg-blue-700 transition;
+}
+
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+  60% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.animate-shine {
+  animation: shine 1.5s ease-out infinite;
+}
+
+input,textarea{
+  color: #171717;
+}
+ 
+button{
+  cursor: pointer;
+}
